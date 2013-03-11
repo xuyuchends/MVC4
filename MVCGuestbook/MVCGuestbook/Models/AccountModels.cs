@@ -15,7 +15,7 @@ namespace MVCGuestbook.Models
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }   
     }
 
     [Table("UserProfile")]
