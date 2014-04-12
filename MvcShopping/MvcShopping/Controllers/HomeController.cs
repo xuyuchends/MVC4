@@ -10,63 +10,56 @@ namespace MvcShopping.Controllers
 {
     public class HomeController : Controller
     {
+        MvcShoppingContext db = new MvcShoppingContext();
         // 首頁
         public ActionResult Index()
         {
-            var data = new List<ProductCategory>()
+            var data = db.ProductCategories.ToList();
+            if (data.Count == 0)
             {
-                new ProductCategory(){Id=1,Name="文具"},
-                 new ProductCategory(){Id=2,Name="礼品"},
-                  new ProductCategory(){Id=3,Name="数据"},
-                   new ProductCategory(){Id=4,Name="书籍"}
+                db.ProductCategories.Add(new ProductCategory() { Id = 1, Name = "文具" });
+                db.ProductCategories.Add(new ProductCategory() { Id = 2, Name = "礼品" });
+                db.ProductCategories.Add(new ProductCategory() { Id = 3, Name = "数据" });
+                db.ProductCategories.Add(new ProductCategory() { Id = 4, Name = "书籍" });
+                db.SaveChanges();
+                data = db.ProductCategories.ToList();
             };
-            return View(data );
+            return View(data);
         }
 
         // 商品列表
         public ActionResult ProductList(int id)
         {
-            var productCategory = new ProductCategory() { Id = id, Name = "类别 " + id };
-            var data = new List<Product>()
+            var productCategory = db.ProductCategories.Find(id);
+            if (productCategory != null)
             {
-                new Product()
+                var data = productCategory.products.ToList();
+                if (data.Count == 0)
                 {
-                    Id=1,
-                    ProductCategory=productCategory,
-                    Name="原子笔",
-                    Description="N/A",
-                    Price=30,
-                    PublishOn=DateTime.Now,
-                    Color=Color.Black
-                },
-                                new Product()
-                {
-                    Id=2,
-                    ProductCategory=productCategory,
-                    Name="铅笔",
-                    Description="N/A",
-                    Price=5,
-                    PublishOn=DateTime.Now,
-                    Color=Color.Black
+                    productCategory.products.Add(new Product()
+                    {
+                        Name = productCategory.Name + "类别下的商品1",
+                        Color = Color.Red,
+                        Description = "N/A",
+                        Price = 99,
+                        PublishOn = DateTime.Now,
+                        ProductCategory = productCategory
+                    });
+                    db.SaveChanges();
+                    data = productCategory.products.ToList();
                 }
-            };
-            return View(data);
+                  return View(data);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         // 商品明細
         public ActionResult ProductDetail(int id)
         {
-            var productCategory = new ProductCategory() { Id = id, Name = "文具" };
-            var data =new Product()
-            {
-                    Id=id,
-                    ProductCategory=productCategory,
-                    Name="商品"+id,
-                    Description="N/A",
-                    Price=30,
-                    PublishOn=DateTime.Now,
-                    Color=Color.Black
-                };
+            var data = db.Products.Find(id);
             return View(data);
         }
     }

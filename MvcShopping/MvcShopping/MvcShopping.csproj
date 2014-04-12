@@ -188,9 +188,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberLoginViewModel.cs" />
+    <Compile Include="Models\MvcShoppingContext.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderHeader.cs" />
     <Compile Include="Models\Product.cs" />

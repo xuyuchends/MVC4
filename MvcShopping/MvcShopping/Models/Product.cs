@@ -14,7 +14,7 @@ namespace MvcShopping.Models
 
         [DisplayName("商品類別")]
         [Required]
-        public ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
 
         [DisplayName("商品名稱")]
         [Required(ErrorMessage = "請輸入商品名稱")]
@@ -38,5 +38,6 @@ namespace MvcShopping.Models
         [DisplayName("上架時間")]
         [Description("如果不設定上架時間，代表此商品永不上架")]
         public DateTime? PublishOn { get; set; }
+
     }
 }

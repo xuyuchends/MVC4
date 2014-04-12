@@ -14,7 +14,7 @@ namespace MvcShopping.Models
 
         [DisplayName("訂單主檔")]
         [Required]
-        public OrderHeader OrderHeader { get; set; }
+        public virtual OrderHeader OrderHeader { get; set; }
 
         [DisplayName("訂購商品")]
         [Required]
@@ -26,5 +26,6 @@ namespace MvcShopping.Models
         [Description("由於商品售價可能會經常異動，因此必須保留購買當下的商品售價")]
         [DataType(DataType.Currency)]
         public int Price { get; set; }
+
     }
 }

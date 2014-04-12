@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcShopping.Models
@@ -14,5 +15,7 @@ namespace MvcShopping.Models
         [Required(ErrorMessage = "請輸入商品類別名稱")]
         [MaxLength(20, ErrorMessage="類別名稱不可超過20個字")]
         public string Name { get; set; }
+
+        public virtual ICollection<Product> products { get; set; }
     }
 }

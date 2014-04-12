@@ -16,6 +16,8 @@ namespace MvcShopping
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.MigrateDatabaseToLatestVersion<MvcShopping.Models.MvcShoppingContext, Migrations.Configuration>());
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
