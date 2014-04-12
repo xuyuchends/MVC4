@@ -18,7 +18,7 @@ namespace MvcShopping.Controllers
 
         // 寫入會員資料
         [HttpPost]
-        public ActionResult Register(Member member)
+        public ActionResult Register([Bind(Exclude="RegisterOn,AuthCode")] Member member)
         {
             return View();
         }
@@ -45,7 +45,7 @@ namespace MvcShopping.Controllers
                     return Redirect(returnUrl);
                 }
             }
-
+            ModelState.AddModelError("", "您输入的账号或密码错误");
             return View();
         }
 

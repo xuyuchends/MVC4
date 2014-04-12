@@ -17,13 +17,13 @@ namespace MvcShopping.Models
         [Description("我們直接以 Email 當成會員的登入帳號")]
         [MaxLength(250, ErrorMessage = "Email地址長度無法超過250個字元")]
         [DataType(DataType.EmailAddress)]
-        public Color Email { get; set; }
+        public string Email { get; set; }
 
         [DisplayName("會員密碼")]
         [Required(ErrorMessage = "請輸入密碼")]
         [MaxLength(40, ErrorMessage = "請輸入密碼")]
         [Description("密碼將以SHA1進行雜湊運算，透過SHA1雜湊運算後的結果轉為HEX表示法的字串長度皆為40個字元")]
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         [DisplayName("中文姓名")]
         [Required(ErrorMessage = "請輸入中文姓名")]

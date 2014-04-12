@@ -20,11 +20,16 @@
                         @Html.Partial("_LoginPartial")
                     </section>
                     <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                            <li>@Html.ActionLink("关于", "About", "Home")</li>
-                            <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                        </ul>
+                      @Html.ActionLink("主页", "Index", "Home")
+                        | @Html.ActionLink("购物车", "Index", "Cart")
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                        @: | @Html.ActionLink("注销", "Logout", "Menber")
+                        }
+                        else
+                        {
+                              @: | @Html.ActionLink("注册", "Register", "Menber")
+                        }
                     </nav>
                 </div>
             </div>
