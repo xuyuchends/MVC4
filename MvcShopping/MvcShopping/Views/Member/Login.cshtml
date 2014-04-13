@@ -4,18 +4,20 @@
 {
     @Scripts.Render("~/bundles/jqueryval");
     <script>
-        @*   $(function () {
-            $("#@Html.IdFor(model=>model.Email)").rules("add", { messages: { email: "请输入Email地址" } });
-        });*@
         $.validator.messages = {
             email:"请输入email地址"
         };
     </script>
-    }
+    @if(TempData["LastTempMessage"]!=null)
+    {
+           <script>
+               alert('@HttpUtility.JavaScriptStringEncode(Convert.ToString(TempData["LastTempMessage"]))');
+                </script>
+    };
+ }
 @{
     ViewBag.Title = "Login";
 }
-
 <h2>Login</h2>
 
 @using (Html.BeginForm()) {

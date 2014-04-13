@@ -27,5 +27,9 @@ namespace MvcShopping.Models
         [DataType(DataType.Currency)]
         public int Price { get; set; }
 
+        [DisplayName("选购数量")]
+        [Required]
+        public int Amount { get; set; }
+
     }
 }
