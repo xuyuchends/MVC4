@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.Web.Mvc;
 
 namespace MvcShopping.Models
 {
@@ -18,6 +19,7 @@ namespace MvcShopping.Models
         [Description("我們直接以 Email 當成會員的登入帳號")]
         [MaxLength(250, ErrorMessage = "Email地址長度無法超過250個字元")]
         [DataType(DataType.EmailAddress)]
+        [Remote("CheckDup","Member",HttpMethod="Post",ErrorMessage="您输入的email已经有人注册过了")]
         public string Email { get; set; }
 
         [DisplayName("會員密碼")]
